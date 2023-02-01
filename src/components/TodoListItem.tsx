@@ -6,12 +6,20 @@ import {
 } from 'react-icons/md';
 import './TodoListItem.scss';
 
-const TodoListItem = () => {
+export type TodoItemProps = {
+  todo: {
+    id: number;
+    text: string;
+    done: boolean;
+  };
+};
+
+const TodoListItem = ({ todo }: TodoItemProps) => {
   return (
     <div className="TodoListItem">
       <div className="checkbox">
         <MdCheckBoxOutlineBlank />
-        <div className="text">할 일</div>
+        <div className="text">{todo.text}</div>
       </div>
       <div className="remove">
         <MdRemoveCircleOutline />
