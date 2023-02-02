@@ -6,25 +6,37 @@ import {
 } from 'react-icons/md';
 import cn from 'classnames';
 import './TodoListItem.scss';
+import { useTodosDispatch, Todo } from '../contexts/TodosContext';
 
 export type TodoItemProps = {
-  todo: {
-    id: number;
-    text: string;
-    checked: boolean;
-  };
+  todo: Todo;
 };
 
 const TodoListItem = ({ todo }: TodoItemProps) => {
   const { text, checked } = todo;
+  const dispatch = useTodosDispatch();
+
+  const onToggle = () => {
+    dispatch({
+      type: 'TOGGLE',
+      id: todo.id,
+    });
+  };
+
+  const onRemove = () => {
+    dispatch({
+      type: 'REMOVE',
+      id: todo.id,
+    });
+  };
 
   return (
     <div className="TodoListItem">
-      <div className={cn('checkbox', { checked })}>
+      <div className={cn('checkbox', { checked })} onClick={() => onToggle()}>
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div className="text">{text}</div>
       </div>
-      <div className="remove">
+      <div className="remove" onClick={() => onRemove()}>
         <MdRemoveCircleOutline />
       </div>
     </div>
