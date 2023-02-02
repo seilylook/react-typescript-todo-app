@@ -1,33 +1,18 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
 import './TodoList.scss';
+import { useTodosState } from '../contexts/TodosContext';
 
 export type TodoItemProps = {
   todo: {
     id: number;
     text: string;
-    done: boolean;
+    checked: boolean;
   };
 };
 
 const TodoList = () => {
-  const todos = [
-    {
-      id: 1,
-      text: 'typescript',
-      done: false,
-    },
-    {
-      id: 2,
-      text: 'nodejs',
-      done: true,
-    },
-    {
-      id: 3,
-      text: 'algorithm',
-      done: true,
-    },
-  ];
+  const todos = useTodosState();
 
   return (
     <div className="TodoList">

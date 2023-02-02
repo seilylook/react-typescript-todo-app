@@ -11,17 +11,17 @@ export type TodoItemProps = {
   todo: {
     id: number;
     text: string;
-    done: boolean;
+    checked: boolean;
   };
 };
 
 const TodoListItem = ({ todo }: TodoItemProps) => {
-  const { text, done } = todo;
+  const { text, checked } = todo;
 
   return (
     <div className="TodoListItem">
-      <div className={cn('checkbox', { done })}>
-        {done ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+      <div className={cn('checkbox', { checked })}>
+        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div className="text">{text}</div>
       </div>
       <div className="remove">
