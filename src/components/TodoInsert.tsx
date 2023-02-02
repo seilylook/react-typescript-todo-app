@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdAdd } from 'react-icons/md';
 import './TodoInsert.scss';
 
-const TodoInsert = () => {
+function TodoInsert() {
+  const [value, setValue] = useState('');
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setValue('');
+  };
+
   return (
-    <div className="TodoInsert">
-      <input placeholder="할 일을 입력하세요." />
+    <form className="TodoInsert" onSubmit={onSubmit}>
+      <input
+        value={value}
+        placeholder="할 일을 입력하세요."
+        onChange={(e) => setValue(e.target.value)}
+      />
       <button type="submit">
         <MdAdd />
       </button>
-    </div>
+    </form>
   );
-};
+}
 
 export default TodoInsert;
